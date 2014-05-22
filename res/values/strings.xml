@@ -3,6 +3,6 @@
 
     <string name="app_name">HelloGlass</string>
     <string name="hello_world">Hello world!</string>
-    <string name="glass_voice_trigger">Hello Glass</string>
+    <string name="glass_voice_trigger">Hello Glass Activity</string>
 
 </resources>

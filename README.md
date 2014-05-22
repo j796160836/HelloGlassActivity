@@ -1,4 +1,4 @@
-HelloGlass
+HelloGlass Activity
 ==========
 
-A simple app using GDK (Glass Development Kit) for google glass
+A simple app using GDK (Glass Development Kit) Immersion Pattern for google glass

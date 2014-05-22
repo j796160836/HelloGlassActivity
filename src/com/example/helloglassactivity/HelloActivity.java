@@ -6,11 +6,15 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
+import android.view.KeyEvent;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class HelloActivity extends Activity {
 
-	public static String MY_MESSAGE = "change_text";
 	private TextView sampleTextview;
 	private int num;
 
@@ -25,30 +29,45 @@ public class HelloActivity extends Activity {
 	@Override
 	protected void onResume() {
 		super.onResume();
-		registerReceiver(mBroadcast, new IntentFilter(MY_MESSAGE));
 	}
 
 	@Override
 	protected void onPause() {
 		super.onPause();
-		unregisterReceiver(mBroadcast);
 	}
 
-	private BroadcastReceiver mBroadcast = new BroadcastReceiver() {
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		MenuInflater inflater = getMenuInflater();
+		inflater.inflate(R.menu.main, menu);
+		return true;
+	}
 
-		@Override
-		public void onReceive(Context mContext, Intent mIntent) {
-			// TODO Auto-generated method stub
-			if (MY_MESSAGE.equals(mIntent.getAction())) {
-				num++;
-				if (num % 3 == 0) {
-					sampleTextview.setText("I'm lovin' it.");
-				} else if (num % 3 == 1) {
-					sampleTextview.setText("Oh yeah!");
-				} else {
-					sampleTextview.setText("Hello, World!");
-				}
-			}
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		// Handle item selection. Menu items typically start another
+		// activity, start a service, or broadcast another intent.
+		switch (item.getItemId()) {
+		case R.id.hello:
+			Toast.makeText(this, "Hello", Toast.LENGTH_LONG).show();
+			return true;
+		case R.id.change_txt:
+			sampleTextview.setText("Zzz...");
+			return true;
+		case R.id.stop:
+			finish();
+			return true;
+		default:
+			return super.onOptionsItemSelected(item);
 		}
-	};
+	}
+
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		if (keyCode == KeyEvent.KEYCODE_DPAD_CENTER) {
+			openOptionsMenu();
+			return true;
+		}
+		return false;
+	}
 }

@@ -19,8 +19,9 @@
             android:label="@string/app_name"
             android:theme="@style/MenuTheme" >
         </activity>
-
-        <activity android:name=".HelloActivity" >
+        <activity
+            android:name=".HelloActivity"
+            android:immersive="true" >
             <intent-filter>
                 <action android:name="com.google.android.glass.action.VOICE_TRIGGER" />
             </intent-filter>
